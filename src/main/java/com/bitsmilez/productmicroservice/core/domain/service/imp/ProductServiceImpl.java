@@ -3,11 +3,13 @@ package com.bitsmilez.productmicroservice.core.domain.service.imp;
 import com.bitsmilez.productmicroservice.core.domain.model.Product;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductRepository;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class ProductServiceImpl implements IProductService {
     private final IProductRepository productRepository;
 
