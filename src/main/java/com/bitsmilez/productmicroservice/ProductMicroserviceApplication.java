@@ -1,13 +1,18 @@
 package com.bitsmilez.productmicroservice;
 
+import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductServiceImpl;
+import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductRepository;
+import com.bitsmilez.productmicroservice.core.useCase.CreateProducts;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.modelmapper.ModelMapper;
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-public class ProductMicroserviceApplication implements CommandLineRunner {
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+@SpringBootApplication
+@EnableJpaRepositories("com.bitsmilez.productmicroservice.core.domain.service.interfaces")
+public class ProductMicroserviceApplication  {
 
 
 	@Bean
@@ -23,10 +28,12 @@ public class ProductMicroserviceApplication implements CommandLineRunner {
 
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		//step2
-
-
+	@Bean
+	public CommandLineRunner demo(IProductRepository repository) {
+		System.out.println("Create Products!");
+		return (args) -> {
+			CreateProducts create = new CreateProducts(new ProductServiceImpl(repository));
+			create.createProducts();
+		};
 	}
 }
