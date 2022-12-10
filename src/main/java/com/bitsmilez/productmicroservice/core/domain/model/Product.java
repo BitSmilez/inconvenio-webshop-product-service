@@ -2,10 +2,7 @@ package com.bitsmilez.productmicroservice.core.domain.model;
 
 
 import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductDto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,18 +14,19 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    private Long price;
-    private Long salesPrice = null;
+    private Double price;
+    private Double salesPrice = null;
     private String img;
     private String description;
     private int stock;
-    private String category;
+    private Categories category;
 
 
     public ProductDto toDTO(){
