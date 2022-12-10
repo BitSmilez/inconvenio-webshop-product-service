@@ -1,24 +1,30 @@
 package com.bitsmilez.productmicroservice.core.domain.service.imp;
 
 
+import com.bitsmilez.productmicroservice.core.domain.model.Categories;
 import com.bitsmilez.productmicroservice.core.domain.model.Product;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProductDto {
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    private Long price;
-    private Long salesPrice;
+    private Double price;
+    private Double salesPrice;
     private String img;
     private String description;
     private int stock;
-    private String category;
+    private Categories category;
 
 
 
