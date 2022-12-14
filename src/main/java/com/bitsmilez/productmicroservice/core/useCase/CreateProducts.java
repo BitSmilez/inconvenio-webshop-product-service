@@ -37,7 +37,7 @@ public class CreateProducts {
         mug.setImg("https://ucarecdn.com/8f73e3b8-bc9c-46d1-a0f7-1bad02629692/");
         mug.setDescription("I dont think its a good idea to wear a white shirt with that one buddy.");
         mug.setStock(5);
-        mug.setCategory(Categories.Cloths);
+        mug.setCategory(Categories.Tableware);
         //entityManager.persist(mug);
 
 
@@ -49,7 +49,7 @@ public class CreateProducts {
         wineGlass.setImg("https://ucarecdn.com/ba2add07-bb0e-4e23-8081-cd90b936aa95/");
         wineGlass.setDescription("Brother if you buy that, you got some problems.");
         wineGlass.setStock(5);
-        wineGlass.setCategory(Categories.Cloths);
+        wineGlass.setCategory(Categories.Tableware);
         //entityManager.persist(wineGlass);
 
 
@@ -60,7 +60,7 @@ public class CreateProducts {
         champagneGlass.setImg("https://ucarecdn.com/9f95c6c4-ace3-4f59-a0da-e0c15591e002/");
         champagneGlass.setDescription("For our fellow buddy with two mouths (or dumbasses)");
         champagneGlass.setStock(5);
-        champagneGlass.setCategory(Categories.Cloths);
+        champagneGlass.setCategory(Categories.Tableware);
         //entityManager.persist(champagneGlass);
 
 
@@ -71,7 +71,7 @@ public class CreateProducts {
         fork.setImg("https://ucarecdn.com/ac45e974-a77e-4f1c-86d1-f189204d18df/");
         fork.setDescription("I sure hope it wont rain when you wear these awesome spoon!");
         fork.setStock(5);
-        fork.setCategory(Categories.Cloths);
+        fork.setCategory(Categories.Tableware);
 
         products.add(fork);
         products.add(mug);
