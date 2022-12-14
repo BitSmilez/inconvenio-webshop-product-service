@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
@@ -23,49 +23,62 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/products")
+    @GetMapping
     public List<ProductDto> getAllProducts() {
 
         return productService.getAllProducts();
     }
 
-    @GetMapping("product/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable(name = "id") UUID id) {
         ProductDto product = productService.getProductById(id);
-        if (product == null) {
+        if( product== null){
             return ResponseEntity.ok().body(product);
 
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 
-    @PostMapping("/product")
+    @PostMapping
     public ResponseEntity<?> createProduct(@RequestBody ProductDto productDto) {
 
+
         productService.createProduct(productDto);
+
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("product/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateProduct(@PathVariable UUID id, @RequestBody ProductDto product) {
 
-        if (productService.updateProduct(id, product)) {
+
+        if( productService.updateProduct(id, product)){
             return new ResponseEntity<>(HttpStatus.OK);
 
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 
-    @DeleteMapping("product/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable(name = "id") UUID id) {
-        if (productService.deleteProduct(id)) {
+        if(productService.deleteProduct(id)){
             return new ResponseEntity<>(HttpStatus.OK);
 
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+
+
+
+
+
+
+
+
 }

@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -22,8 +21,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    private BigDecimal price;
-    private BigDecimal salesPrice = null;
+    private Double price;
+    private Double salesPrice = null;
     private String img;
     private String description;
     private int stock;
