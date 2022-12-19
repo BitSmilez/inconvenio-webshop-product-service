@@ -66,4 +66,9 @@ public class ProductServiceImpl implements IProductService {
         return null;
 
     }
+
+    @Override
+    public List<ProductDto> getProductByKeyWord(String keyword) {
+       return productRepository.findAllByNameContaining(keyword.toLowerCase()).stream().map(Product::toDTO).toList();
+    }
 }
