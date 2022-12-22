@@ -26,6 +26,11 @@ public class Product {
     private BigDecimal salesPrice = null;
     private String img;
     private String description;
+    @Column(length = 2048)
+    private String detailedDescription;
+    private String designer;
+    private String productOrigin;
+    private String material;
     private int stock;
     private Categories category;
 

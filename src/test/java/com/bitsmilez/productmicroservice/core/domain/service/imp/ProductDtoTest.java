@@ -36,10 +36,14 @@ class ProductDtoTest {
         BigDecimal salesPrice = null;
         String img = "img";
         String description = "Description for product";
+        String detailedDescription = "Detailed description for product";
+        String designer = "Designer";
+        String productOrigin = "Product origin";
+        String material = "Material";
         int stock = 20;
-        Categories category = Categories.Cloths;
-        Product product = new Product(id, name, price, salesPrice, img, description, stock, category);
-        Product productDTO = new ProductDto(id, name, price, salesPrice, img, description, stock, category).toEntity();
+        Categories category = Categories.Clothes;
+        Product product = new Product(id, name, price, salesPrice, img, description, detailedDescription, designer, productOrigin, material, stock, category);
+        Product productDTO = new ProductDto(id, name, price, salesPrice, img, description, detailedDescription, designer, productOrigin, material, stock, category).toEntity();
 
         assertEquals(productDTO, product);
 
@@ -53,10 +57,14 @@ class ProductDtoTest {
         BigDecimal salesPrice = null;
         String img = "img";
         String description = "Description for product";
+        String detailedDescription = "Detailed description for product";
+        String designer = "Designer";
+        String productOrigin = "Product origin";
+        String material = "Material";
         int stock = 20;
-        Categories category = Categories.Cloths;
-        ProductDto product = new Product(id, name, price, salesPrice, img, description, stock, category).toDTO();
-        ProductDto productDTO = new ProductDto(id, name, price, salesPrice, img, description, stock, category);
+        Categories category = Categories.Clothes;
+        ProductDto product = new Product(id, name, price, salesPrice, img, description, detailedDescription, designer, productOrigin, material, stock, category).toDTO();
+        ProductDto productDTO = new ProductDto(id, name, price, salesPrice, img, description, detailedDescription, designer, productOrigin, material, stock, category);
 
         assertEquals(product, productDTO);
     }

@@ -24,6 +24,10 @@ public class ProductDto {
     private BigDecimal salesPrice;
     private String img;
     private String description;
+    private String detailedDescription;
+    private String designer;
+    private String productOrigin;
+    private String material;
     private int stock;
     private Categories category;
 
