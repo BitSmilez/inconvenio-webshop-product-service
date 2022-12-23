@@ -72,7 +72,7 @@ public class ProductController {
     public List<ProductDto> getCategory(@PathVariable(name="category") String category) {
 
 
-        return productService.getProductsByCategory(String category);
+        return productService.getProductsByCategory(category);
     }
 
     }
