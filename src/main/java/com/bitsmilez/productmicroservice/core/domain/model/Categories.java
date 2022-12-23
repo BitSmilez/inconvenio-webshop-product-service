@@ -1,7 +1,8 @@
 package com.bitsmilez.productmicroservice.core.domain.model;
 
 public enum Categories {
-    Cloths,
+    Clothes,
     Tableware,
+    Cutlery
 
 }
