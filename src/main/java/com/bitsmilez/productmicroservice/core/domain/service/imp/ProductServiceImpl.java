@@ -66,4 +66,9 @@ public class ProductServiceImpl implements IProductService {
         return null;
 
     }
+
+    @Override
+    public List<ProductDto> getProductsByCategory(String category) {
+        return productRepository.findAllByCategory(category).stream().map(Product::toDTO).toList();
+    }
 }
