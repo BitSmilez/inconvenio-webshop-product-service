@@ -68,4 +68,11 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
-}
+    @GetMapping("product/category/{category}")
+    public List<ProductDto> getCategory(@PathVariable(name="category") String category) {
+
+
+        return productService.getProductsByCategory(String category);
+    }
+
+    }
