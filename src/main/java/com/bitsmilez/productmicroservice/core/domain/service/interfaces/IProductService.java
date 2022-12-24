@@ -19,5 +19,7 @@ public interface IProductService {
 
 
     ProductDto getProductById(UUID id);
+
+    List<ProductDto> getProductByKeyWord(String keyword);
 }
 

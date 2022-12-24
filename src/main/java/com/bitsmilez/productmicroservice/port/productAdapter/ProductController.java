@@ -68,4 +68,10 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+
+    @GetMapping("product/find")
+    public List<ProductDto> findProducts(@RequestParam(name="keyWord") String keyWord){
+        return productService.getProductByKeyWord(keyWord);
+
+    }
 }
