@@ -11,3 +11,19 @@ Wineglass: https://www.theuncomfortable.com/wp-content/uploads/2017/04/19_winegl
 Champagne glass: https://www.theuncomfortable.com/wp-content/uploads/2017/05/champagne_01_p-1116x1489.jpg
 
 fork: https://www.theuncomfortable.com/wp-content/uploads/2017/05/chain_fork_01_p-1024x684.jpg
+
+
+
+was wir haben:
+cdn
+ci
+cypress
+good pm
+front end with nice design
+
+
+was wir wollen:
+(redis)
+(cloud hosting)
+authorization cloak flow
+rabbit mq anderes modell

@@ -13,6 +13,12 @@ import java.util.UUID;
 
 @Repository
 public interface IProductRepository extends JpaRepository<Product, UUID> {
+
     @Query(value= "SELECT p FROM Product p WHERE p.category = ?1")
     List<Product> findAllByCategory(Categories Category);
+
+    @Query(value= "SELECT p FROM Product p WHERE LOWER(p.name) LIKE %?1%")
+    List<Product> findAllByNameContaining(String keyword);
+
+
 }

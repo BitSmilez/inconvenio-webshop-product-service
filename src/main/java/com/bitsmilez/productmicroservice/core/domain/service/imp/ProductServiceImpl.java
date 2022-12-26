@@ -85,5 +85,9 @@ public class ProductServiceImpl implements IProductService {
         else{
             return new ArrayList<ProductDto>();
         }
+
+    public List<ProductDto> getProductByKeyWord(String keyword) {
+       return productRepository.findAllByNameContaining(keyword.toLowerCase()).stream().map(Product::toDTO).toList();
+
     }
 }
