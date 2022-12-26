@@ -1,10 +1,12 @@
 package com.bitsmilez.productmicroservice.core.domain.service.imp;
 
+import com.bitsmilez.productmicroservice.core.domain.model.Categories;
 import com.bitsmilez.productmicroservice.core.domain.model.Product;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductRepository;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -70,5 +72,22 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<ProductDto> getProductByKeyWord(String keyword) {
        return productRepository.findAllByNameContaining(keyword.toLowerCase()).stream().map(Product::toDTO).toList();
+    }
+    @Override
+    public List<ProductDto> getProductsByCategory(String category) {
+        Categories value = null;
+        for (Categories categorie :Categories.values()){
+            if(categorie.name().equalsIgnoreCase(category)){
+                value = categorie;
+            }
+        }
+        if (value !=null){
+
+            return productRepository.findAllByCategory(value).stream().map(Product::toDTO).toList();
+
+        }
+        else{
+            return new ArrayList<ProductDto>();
+        }
     }
 }
