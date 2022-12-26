@@ -77,8 +77,12 @@ public class ProductController {
 
     @GetMapping("product/category/{category}")
     public List<ProductDto> getCategory(@PathVariable(name="category") String category) {
-
-
         return productService.getProductsByCategory(category);
     }
+
+    @GetMapping("products/sale")
+    public List<ProductDto> getProductsOnSale() {
+        return productService.getProductsOnSale();
+    }
+
 }
