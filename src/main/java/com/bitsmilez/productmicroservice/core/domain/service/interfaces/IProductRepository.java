@@ -1,6 +1,7 @@
 package com.bitsmilez.productmicroservice.core.domain.service.interfaces;
 
 
+import com.bitsmilez.productmicroservice.core.domain.model.Categories;
 import com.bitsmilez.productmicroservice.core.domain.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,5 +15,8 @@ import java.util.UUID;
 public interface IProductRepository extends JpaRepository<Product, UUID> {
     @Query(value= "SELECT p FROM Product p WHERE LOWER(p.name) LIKE %?1%")
     List<Product> findAllByNameContaining(String keyword);
+
+    @Query(value= "SELECT p FROM Product p WHERE p.category = ?1")
+    List<Product> findAllByCategory(Categories Category);
 
 }
