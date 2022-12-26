@@ -24,5 +24,7 @@ public interface IProductService {
 
     List<ProductDto> getProductsByCategory(String category);
 
+    List<ProductDto> getProductsOnSale();
+
 }
 

@@ -90,4 +90,10 @@ public class ProductServiceImpl implements IProductService {
             return new ArrayList<ProductDto>();
         }
     }
+
+    @Override
+    public List<ProductDto> getProductsOnSale() {
+        return productRepository.findAllByOnSale().stream().map(Product::toDTO).toList();
+    }
+
 }

@@ -19,4 +19,8 @@ public interface IProductRepository extends JpaRepository<Product, UUID> {
     @Query(value= "SELECT p FROM Product p WHERE p.category = ?1")
     List<Product> findAllByCategory(Categories Category);
 
+    @Query(value= "SELECT p FROM Product p WHERE p.salesPrice is not null")
+    List<Product> findAllByOnSale();
+
+
 }
