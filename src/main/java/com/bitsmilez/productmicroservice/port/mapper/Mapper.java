@@ -1,11 +1,13 @@
 package com.bitsmilez.productmicroservice.port.mapper;
 
 import com.bitsmilez.productmicroservice.config.ProductMessage;
+import com.bitsmilez.productmicroservice.core.domain.model.Product;
 import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductDto;
+import org.modelmapper.ModelMapper;
 
 import java.util.UUID;
 
-public class ProductMessageMapper {
+public class Mapper {
 
     public static ProductMessage mapToProductMessage(ProductDto productDto, int quantity) {
         ProductMessage productMessage = new ProductMessage();
@@ -18,5 +20,14 @@ public class ProductMessageMapper {
         productMessage.setProductImg(productDto.getImg());
         productMessage.setQuantity(quantity);
         return productMessage;
+    }
+
+    public static Product mapToProduct(ProductDto product) {
+        return new ModelMapper().map(product, Product.class);
+    }
+
+    public static ProductDto maptoProductDTO(Product product) {
+        return new ModelMapper().map(product, ProductDto.class);
+
     }
 }
