@@ -15,7 +15,6 @@ import java.util.UUID;
 public class ProductController {
 
     @Autowired
-
     private IProductService productService;
 
     public ProductController(IProductService productService) {
@@ -70,13 +69,13 @@ public class ProductController {
     }
 
     @GetMapping("product/find")
-    public List<ProductDto> findProducts(@RequestParam(name="keyWord") String keyWord){
+    public List<ProductDto> findProducts(@RequestParam(name = "keyWord") String keyWord) {
         return productService.getProductByKeyWord(keyWord);
 
     }
 
     @GetMapping("product/category/{category}")
-    public List<ProductDto> getCategory(@PathVariable(name="category") String category) {
+    public List<ProductDto> getCategory(@PathVariable(name = "category") String category) {
         return productService.getProductsByCategory(category);
     }
 

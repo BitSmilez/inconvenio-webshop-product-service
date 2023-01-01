@@ -34,14 +34,4 @@ public class Product {
     private int stock;
     private Categories category;
 
-
-    public ProductDto toDTO(){
-
-        ModelMapper modelMapper = new ModelMapper();
-
-        return modelMapper.map(this,ProductDto.class);
-    }
-
-
-
 }
