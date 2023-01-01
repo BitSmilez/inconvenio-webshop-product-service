@@ -29,7 +29,7 @@ services:
     volumes:
       - postgres:/postgres
     ports:
-      - "5432:5432"
+      - "5433:5433"
     restart: unless-stopped
   rabbitmq:
     container_name: inconv-rabbit-mq
