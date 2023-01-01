@@ -4,6 +4,7 @@ import com.bitsmilez.productmicroservice.core.domain.model.Categories;
 import com.bitsmilez.productmicroservice.core.domain.model.Product;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductRepository;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductService;
+import com.bitsmilez.productmicroservice.port.mapper.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,25 +23,24 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<ProductDto> getAllProducts() {
 
-        return productRepository.findAll().stream().map(Product::toDTO).toList();
+        return productRepository.findAll().stream().map(Mapper::maptoProductDTO).toList();
     }
 
     @Override
     public ProductDto createProduct(ProductDto product) {
 
-        productRepository.save(product.toEntity());
+        productRepository.save(Mapper.mapToProduct(product));
         return product;
     }
 
     @Override
     public boolean updateProduct(UUID id, ProductDto productReq) {
 
-        if (productRepository.existsById(id) && productReq.getId() == id){
+        if (productRepository.existsById(id) && productReq.getId() == id) {
 
-            productRepository.save(productReq.toEntity());
+            productRepository.save(Mapper.mapToProduct(productReq));
             return true;
-        }
-        else{
+        } else {
             return false;
         }
 
@@ -61,39 +61,34 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductDto getProductById(UUID id) {
         Optional<Product> product = productRepository.findById(id);
-        if(product.isPresent()){
-            return product.get().toDTO();
-        }
-
-        return null;
+        return product.map(Mapper::maptoProductDTO).orElse(null);
 
     }
 
     @Override
     public List<ProductDto> getProductByKeyWord(String keyword) {
-       return productRepository.findAllByNameContaining(keyword.toLowerCase()).stream().map(Product::toDTO).toList();
+        return productRepository.findAllByNameContaining(keyword.toLowerCase()).stream().map(Mapper::maptoProductDTO).toList();
     }
+
     @Override
     public List<ProductDto> getProductsByCategory(String category) {
         Categories value = null;
-        for (Categories categorie :Categories.values()){
-            if(categorie.name().equalsIgnoreCase(category)){
+        for (Categories categorie : Categories.values()) {
+            if (categorie.name().equalsIgnoreCase(category)) {
                 value = categorie;
             }
         }
-        if (value !=null){
+        if (value != null) {
+            return productRepository.findAllByCategory(value).stream().map(Mapper::maptoProductDTO).toList();
 
-            return productRepository.findAllByCategory(value).stream().map(Product::toDTO).toList();
-
-        }
-        else{
-            return new ArrayList<ProductDto>();
+        } else {
+            return new ArrayList<>();
         }
     }
 
     @Override
     public List<ProductDto> getProductsOnSale() {
-        return productRepository.findAllByOnSale().stream().map(Product::toDTO).toList();
+        return productRepository.findAllByOnSale().stream().map(Mapper::maptoProductDTO).toList();
     }
 
 }

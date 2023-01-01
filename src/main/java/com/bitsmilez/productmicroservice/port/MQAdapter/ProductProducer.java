@@ -4,7 +4,7 @@ import com.bitsmilez.productmicroservice.config.MQConfig;
 import com.bitsmilez.productmicroservice.config.ProductMessage;
 import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductDto;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductService;
-import com.bitsmilez.productmicroservice.port.mapper.ProductMessageMapper;
+import com.bitsmilez.productmicroservice.port.mapper.Mapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class ProductProducer {
         ProductDto product = productService.getProductById(UUID.fromString(productID));
 
         if (product != null) {
-            ProductMessage productMessage = ProductMessageMapper.mapToProductMessage(product, quantity);
+            ProductMessage productMessage = Mapper.mapToProductMessage(product, quantity);
             productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE_TOPIC, MQConfig.PRODUCT_ROUTING_KEY, productMessage);
             return new ResponseEntity<>(HttpStatus.OK);
         }
