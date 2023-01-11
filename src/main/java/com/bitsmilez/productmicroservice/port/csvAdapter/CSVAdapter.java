@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,21 +15,33 @@ public class CSVAdapter {
 
     public static List<ProductDto> readCsv(String csvFile) {
         BufferedReader br = null;
-        String line = "";
-        String cvsSplitBy = ",";
+        String line;
+        String cvsSplitBy = ";";
         List<ProductDto> products = new ArrayList<>();
-
+        int i = 0;
         try {
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
+                System.out.println("erste Zeile jo | ");
+                if(i==0){
+                    i++;
+                    continue;
+                }
 
                 // use comma as separator
                 String[] productData = line.split(cvsSplitBy);
 
                 UUID id = UUID.randomUUID();
                 String name = productData[0];
+                System.out.println("hier huhu"+ Arrays.toString(productData));
+
                 BigDecimal price = new BigDecimal(productData[1]);
-                BigDecimal salesPrice = new BigDecimal(productData[2]);
+                BigDecimal salesPrice = null;
+                if (!productData[2].equals("")){
+                     salesPrice = new BigDecimal(productData[2]);
+
+                }
+
                 String img = productData[3];
                 String description = productData[4];
                 String detailedDescription = productData[5];

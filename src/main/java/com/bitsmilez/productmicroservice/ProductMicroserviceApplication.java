@@ -1,10 +1,9 @@
 package com.bitsmilez.productmicroservice;
 
 import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductDto;
-import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductServiceImpl;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductRepository;
-import com.bitsmilez.productmicroservice.core.useCase.CreateProducts;
 import com.bitsmilez.productmicroservice.port.csvAdapter.CSVAdapter;
+import com.bitsmilez.productmicroservice.port.mapper.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 @SpringBootApplication
@@ -34,20 +32,15 @@ public class ProductMicroserviceApplication  {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IProductRepository repository) throws FileNotFoundException {
-		System.out.println("Create Products with CSV");
-		String filePath = "/products.csv";
+	public CommandLineRunner demo(IProductRepository repository) {
+		String filePath = "/app/products.csv";
 		List<ProductDto> products = CSVAdapter.readCsv(filePath);
-		for (ProductDto product : products) {
-			System.out.println(product);
-		}
 
-		//CSVAdapter csvAdapter = new CSVAdapter();
-		//csvAdapter.getProducts("C:\\Users\\Biri\\Documents\\Uni\\KBE\\inconvenio-webshop-product-service\\products.csv");
+
 		return (args) -> {
-
-			CreateProducts create = new CreateProducts(new ProductServiceImpl(repository));
-			create.createProducts();
+			// save a few customers
+			repository.saveAll(products.stream().map(Mapper::mapToProduct).toList());
 		};
+
 	}
 }
