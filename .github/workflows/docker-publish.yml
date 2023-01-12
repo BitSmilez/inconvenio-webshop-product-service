@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/inconvenio-webshop:${{ github.repository }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/inconvenio-webshop:${{ github.event.repository.name }}
