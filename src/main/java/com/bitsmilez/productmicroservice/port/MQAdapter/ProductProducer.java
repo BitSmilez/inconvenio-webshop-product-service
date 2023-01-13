@@ -10,15 +10,12 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3000/cart"})
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 public class ProductProducer {
 
     @Autowired
@@ -26,9 +23,10 @@ public class ProductProducer {
     @Autowired
     private IProductService productService;
 
-    public ProductProducer(IProductService productService) {
+    public ProductProducer(IProductService productService, RabbitTemplate productTemplate) {
         super();
         this.productService = productService;
+        this.productTemplate = productTemplate;
     }
 
     @PostMapping("/add-to-cart")
@@ -40,7 +38,23 @@ public class ProductProducer {
 
         if (product != null) {
             ProductMessage productMessage = Mapper.mapToProductMessage(product, quantity);
-            productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE_TOPIC, MQConfig.PRODUCT_ROUTING_KEY, productMessage);
+            productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE, MQConfig.PRODUCT_TOPIC_ADD_TO_CART, productMessage);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/remove-from-cart")
+    public ResponseEntity<?> publishRemoveFromCartEvent(@RequestBody ObjectNode objectNode) {
+        String productID = objectNode.get("productID").asText();
+        String cartID = objectNode.get("cartID").asText();
+
+        if (productID != null && cartID != null) {
+            ProductMessage productMessage = new ProductMessage();
+            productMessage.setProductID(productID);
+            productMessage.setUserID(cartID);
+            System.out.println("Sending Remove message: " + productMessage);
+            productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE, MQConfig.PRODUCT_TOPIC_REMOVE_FROM_CART, productMessage);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
