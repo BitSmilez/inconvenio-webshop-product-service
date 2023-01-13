@@ -24,4 +24,4 @@ jobs:
       - name: Build and push
         run: |
           docker-compose build
-          docker-compose push --include-deps
+          docker-compose push
