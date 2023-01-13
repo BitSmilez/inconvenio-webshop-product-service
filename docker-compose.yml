@@ -5,8 +5,8 @@ volumes:
 
 services:
   app:
-    container_name: product-microservice
-    image: product-microservice
+    container_name: inconvenio-webshop-product-service
+    image: inconvenio-webshop-product-service:latest
     command: java -jar target/product-microservice-0.0.1-SNAPSHOT.jar
     build:
       context: .
