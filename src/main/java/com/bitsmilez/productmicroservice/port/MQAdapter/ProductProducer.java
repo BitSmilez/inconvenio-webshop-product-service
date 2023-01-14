@@ -6,6 +6,8 @@ import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductDto;
 import com.bitsmilez.productmicroservice.core.domain.service.interfaces.IProductService;
 import com.bitsmilez.productmicroservice.port.mapper.Mapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,9 @@ public class ProductProducer {
     @Autowired
     private IProductService productService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductProducer.class);
+
+
     public ProductProducer(IProductService productService, RabbitTemplate productTemplate) {
         super();
         this.productService = productService;
@@ -38,6 +43,7 @@ public class ProductProducer {
 
         if (product != null) {
             ProductMessage productMessage = Mapper.mapToProductMessage(product, quantity);
+            LOGGER.info(String.format("Add Message sent -> %s", productMessage));
             productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE, MQConfig.PRODUCT_TOPIC_ADD_TO_CART, productMessage);
             return new ResponseEntity<>(HttpStatus.OK);
         }
@@ -53,10 +59,33 @@ public class ProductProducer {
             ProductMessage productMessage = new ProductMessage();
             productMessage.setProductID(productID);
             productMessage.setUserID(cartID);
-            System.out.println("Sending Remove message: " + productMessage);
+
+            LOGGER.info(String.format("Remove Message sent -> %s", productMessage));
+
             productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE, MQConfig.PRODUCT_TOPIC_REMOVE_FROM_CART, productMessage);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping("/update-cart")
+    public ResponseEntity<?> publishUpdateCartEvent(@RequestBody ObjectNode objectNode) {
+        String productID = objectNode.get("productID").asText();
+        int quantity = objectNode.get("quantity").asInt();
+        String cartID = objectNode.get("cartID").asText();
+
+        if (productID != null && cartID != null) {
+            ProductMessage productMessage = new ProductMessage();
+            productMessage.setProductID(productID);
+            productMessage.setUserID(cartID);
+            productMessage.setQuantity(quantity);
+
+            LOGGER.info(String.format("Update Message sent -> %s", productMessage));
+
+            productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE, MQConfig.PRODUCT_TOPIC_UPDATE_CART, productMessage);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 }
