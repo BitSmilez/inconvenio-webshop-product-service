@@ -12,6 +12,17 @@ Champagne glass: https://www.theuncomfortable.com/wp-content/uploads/2017/05/cha
 
 fork: https://www.theuncomfortable.com/wp-content/uploads/2017/05/chain_fork_01_p-1024x684.jpg
 
+Watercan:https://www.theuncomfortable.com/wp-content/uploads/2017/04/18_watering_can.jpg
+
+Ruler: https://www.theuncomfortable.com/wp-content/uploads/2018/10/Ruler-768x768.jpg 
+
+Teapot: https://ucarecdn.com/bce086de-bbc4-4dfb-92b1-a7d399167aea/
+
+Spoon: https://www.theuncomfortable.com/wp-content/uploads/2017/04/14_spoon.jpg
+
+glasses: https://www.theuncomfortable.com/wp-content/uploads/2018/01/Uncomfortable-glasses-02-768x768.jpg
+
+
 
 
 was wir haben:
