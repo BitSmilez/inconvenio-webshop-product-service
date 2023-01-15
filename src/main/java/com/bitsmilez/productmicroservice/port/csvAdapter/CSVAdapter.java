@@ -2,12 +2,12 @@ package com.bitsmilez.productmicroservice.port.csvAdapter;
 
 import com.bitsmilez.productmicroservice.core.domain.model.Categories;
 import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductDto;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,10 +30,10 @@ public class CSVAdapter {
 
                 // use comma as separator
                 String[] productData = line.split(cvsSplitBy);
-
+                System.out.println("Product [ name=" + productData[0] + " , price=" + productData[1] + " , salesPrice=" + productData[2] + "]");
                 UUID id = UUID.randomUUID();
                 String name = productData[0];
-                System.out.println("hier huhu"+ Arrays.toString(productData));
+
 
                 BigDecimal price = new BigDecimal(productData[1]);
                 BigDecimal salesPrice = null;
