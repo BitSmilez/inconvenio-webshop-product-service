@@ -31,10 +31,12 @@ ci
 cypress
 good pm
 front end with nice design
+rabbit mq statt basic topic exhange
+authorization code flow
 
 
 was wir wollen:
 (redis)
 (cloud hosting)
-authorization cloak flow
-rabbit mq anderes modell
+
+
