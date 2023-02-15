@@ -9,11 +9,11 @@ import java.util.UUID;
 
 public class Mapper {
 
-    public static ProductMessage mapToProductMessage(ProductDto productDto, int quantity) {
+    public static ProductMessage mapToProductMessage(ProductDto productDto, int quantity, String userID) {
         ProductMessage productMessage = new ProductMessage();
         productMessage.setMessageID(UUID.randomUUID().toString());
         productMessage.setProductID(productDto.getId().toString());
-        productMessage.setUserID("1");
+        productMessage.setUserID(userID);
         productMessage.setProductName(productDto.getName());
         productMessage.setProductPrice(productDto.getPrice());
         productMessage.setProductSalesPrice(productDto.getSalesPrice());

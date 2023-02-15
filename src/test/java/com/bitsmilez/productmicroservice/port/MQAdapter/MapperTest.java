@@ -25,7 +25,7 @@ class MapperTest {
         productDto.setImg("test");
         int quantity = 1;
         // Map to ProductMessage
-        ProductMessage productMessage = Mapper.mapToProductMessage(productDto, quantity);
+        ProductMessage productMessage = Mapper.mapToProductMessage(productDto, quantity, "1");
         // Assert
         assertEquals(productDto.getId().toString(), productMessage.getProductID());
         assertEquals(productDto.getName(), productMessage.getProductName());
