@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3000/cart"})
-@RestController
+@CrossOrigin(origins = "http://localhost:8089")
+@RestController("/cart")
 public class ProductProducer {
 
     @Autowired
