@@ -35,9 +35,7 @@ public class ProductMicroserviceApplication  {
 	public CommandLineRunner demo(IProductRepository repository) {
 		String filePath = "/app/products.csv";
 		List<ProductDto> products = CSVAdapter.readCsv(filePath);
-		for (ProductDto product : products) {
-			System.out.println(Mapper.mapToProduct(product));
-		}
+		System.out.println("version: 9");
 
 
 		return (args) -> {
