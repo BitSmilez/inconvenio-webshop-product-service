@@ -38,11 +38,12 @@ public class ProductProducer {
     public ResponseEntity<?> publishAddToCartEvent(@RequestBody ObjectNode objectNode) {
         String productID = objectNode.get("productID").asText();
         int quantity = objectNode.get("quantity").asInt();
+        String cartID = objectNode.get("cartID").asText();
 
         ProductDto product = productService.getProductById(UUID.fromString(productID));
 
         if (product != null) {
-            ProductMessage productMessage = Mapper.mapToProductMessage(product, quantity);
+            ProductMessage productMessage = Mapper.mapToProductMessage(product, quantity, cartID);
             LOGGER.info(String.format("Add Message sent -> %s", productMessage));
             productTemplate.convertAndSend(MQConfig.PRODUCT_EXCHANGE, MQConfig.PRODUCT_TOPIC_ADD_TO_CART, productMessage);
             return new ResponseEntity<>(HttpStatus.OK);
