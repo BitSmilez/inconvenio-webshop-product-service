@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3000/cart"})
+@CrossOrigin(origins = "http://localhost:8089")
 @RestController
 public class ProductProducer {
 
@@ -34,7 +34,7 @@ public class ProductProducer {
         this.productTemplate = productTemplate;
     }
 
-    @PostMapping("/add-to-cart")
+    @PostMapping("cart/add-to-cart")
     public ResponseEntity<?> publishAddToCartEvent(@RequestBody ObjectNode objectNode) {
         String productID = objectNode.get("productID").asText();
         int quantity = objectNode.get("quantity").asInt();
@@ -50,7 +50,7 @@ public class ProductProducer {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/remove-from-cart")
+    @PostMapping("cart/remove-from-cart")
     public ResponseEntity<?> publishRemoveFromCartEvent(@RequestBody ObjectNode objectNode) {
         String productID = objectNode.get("productID").asText();
         String cartID = objectNode.get("cartID").asText();
@@ -68,7 +68,7 @@ public class ProductProducer {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/update-cart")
+    @PostMapping("cart/update-cart")
     public ResponseEntity<?> publishUpdateCartEvent(@RequestBody ObjectNode objectNode) {
         String productID = objectNode.get("productID").asText();
         int quantity = objectNode.get("quantity").asInt();
