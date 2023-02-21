@@ -22,7 +22,6 @@ public class CSVAdapter {
         try {
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
-                System.out.println("erste Zeile jo | ");
                 if(i==0){
                     i++;
                     continue;
@@ -30,7 +29,6 @@ public class CSVAdapter {
 
                 // use comma as separator
                 String[] productData = line.split(cvsSplitBy);
-                System.out.println("Product [ name=" + productData[0] + " , price=" + productData[1] + " , salesPrice=" + productData[2] + "]");
                 UUID id = UUID.randomUUID();
                 String name = productData[0];
 
