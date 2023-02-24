@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.List;
@@ -32,10 +33,10 @@ public class ProductMicroserviceApplication  {
 	}
 
 	@Bean
+	@Profile("!test")
 	public CommandLineRunner demo(IProductRepository repository) {
 		String filePath = "/app/products.csv";
 		List<ProductDto> products = CSVAdapter.readCsv(filePath);
-		System.out.println("version: 9");
 
 
 		return (args) -> {
