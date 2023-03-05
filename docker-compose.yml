@@ -20,6 +20,10 @@ services:
       - rabbitmq
       - postgres
       - redis
+    networks:
+        - backend
+    links:
+      - redis
   postgres:
     container_name: postgres_container
     image: postgres
@@ -33,6 +37,8 @@ services:
     ports:
       - "5433:5433"
     restart: unless-stopped
+    networks:
+        - backend
   rabbitmq:
     container_name: inconv-rabbit-mq
     image: rabbitmq:3-management
@@ -46,10 +52,12 @@ services:
     networks:
         - backend
   redis:
+    container_name: redis
     image: redis:latest
     ports:
       - "6379:6379"
+    networks:
+        - backend
 networks:
     backend:
-      external: false
-      name: backend
+      driver: bridge
