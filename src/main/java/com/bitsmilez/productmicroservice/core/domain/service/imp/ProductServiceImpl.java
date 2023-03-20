@@ -42,7 +42,7 @@ public class ProductServiceImpl implements IProductService {
     @CacheEvict(value = {"products_all", "products_id", "products_sale", "products_search", "products_category"}, allEntries = true)
     public boolean updateProduct(UUID id, ProductDto productReq) {
 
-        if (productRepository.existsById(id) && productReq.getId() == id) {
+        if (productReq != null &&productRepository.existsById(id) && productReq.getId() == id) {
 
             productRepository.save(Mapper.mapToProduct(productReq));
             return true;

@@ -1,12 +1,10 @@
 package com.bitsmilez.productmicroservice.core.domain.model;
 
 
-import com.bitsmilez.productmicroservice.core.domain.service.imp.ProductDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 import java.util.UUID;

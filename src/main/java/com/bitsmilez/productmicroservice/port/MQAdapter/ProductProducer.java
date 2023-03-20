@@ -56,7 +56,7 @@ public class ProductProducer {
         String productID = objectNode.get("productID").asText();
         String cartID = objectNode.get("cartID").asText();
 
-        if (productID != null && cartID != null) {
+        if (productID != null && cartID != null && productService.getProductById(UUID.fromString(productID)) != null ) {
             ProductMessage productMessage = new ProductMessage();
             productMessage.setProductID(productID);
             productMessage.setUserID(cartID);
@@ -75,7 +75,7 @@ public class ProductProducer {
         int quantity = objectNode.get("quantity").asInt();
         String cartID = objectNode.get("cartID").asText();
 
-        if (productID != null && cartID != null) {
+        if (productID != null && cartID != null && productService.getProductById(UUID.fromString(productID)) != null) {
             ProductMessage productMessage = new ProductMessage();
             productMessage.setProductID(productID);
             productMessage.setUserID(cartID);
