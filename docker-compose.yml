@@ -14,7 +14,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/postgres
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_RABBITMQ_HOST=inconv-rabbit-mq
@@ -23,18 +23,23 @@ services:
       - rabbitmq
       - postgres
       - redis
+    networks:
+        - backend
   postgres:
     container_name: postgres_container
     image: postgres
     environment:
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "admin"
+      PGPORT: 5433
       PGDATA: /postgres
     volumes:
       - postgres:/postgres
     ports:
       - "5433:5433"
     restart: unless-stopped
+    networks:
+        - backend
   rabbitmq:
     container_name: inconv-rabbit-mq
     image: rabbitmq:3-management
@@ -45,7 +50,16 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
     restart: unless-stopped
+    networks:
+        - backend
   redis:
     image: redis:latest
     ports:
       - "6379:6379"
+    networks:
+        - backend
+networks:
+  backend:
+    driver: bridge
+    external: false
+    name: backend
