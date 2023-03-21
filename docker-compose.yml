@@ -25,6 +25,7 @@ services:
       - redis
     networks:
         - backend
+    restart: unless-stopped
   postgres:
     container_name: postgres_container
     image: postgres
