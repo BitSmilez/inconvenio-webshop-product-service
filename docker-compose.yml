@@ -12,13 +12,14 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8085:8085"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/postgres
       - SPRING_DATASOURCE_USERNAME=admin
       - SPRING_DATASOURCE_PASSWORD=admin
       - SPRING_RABBITMQ_HOST=inconv-rabbit-mq
       - SPRING_REDIS_HOST=redis
+      - SERVER_PORT=8085
     depends_on:
       - rabbitmq
       - postgres
