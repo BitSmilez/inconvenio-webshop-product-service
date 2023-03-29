@@ -8,8 +8,9 @@ To start the server enter:
 docker-compose up
 ```
 
-Bildquellen:
-The best boots you ever saw: https://www.theuncomfortable.com/wp-content/uploads/2017/04/20_boots-655x655.jpg (zuletzt besucht am 10.12.2022)
+The used pictures are from  Katerina Kamprani.
+
+The best boots you ever saw: https://www.theuncomfortable.com/wp-content/uploads/2017/04/20_boots-655x655.jpg 
 
 Mugs: https://www.theuncomfortable.com/wp-content/uploads/2017/05/mug_01_p-768x520.jpg
 
