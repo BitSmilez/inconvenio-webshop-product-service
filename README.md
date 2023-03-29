@@ -1,6 +1,13 @@
 # inconvenio-webshop-product-service
 Spring Boot Product Microservice for the Inconvenio Webshop
 
+Welcome! This is a product microservice for the inconvenio webshop!
+
+To start the server enter:
+```
+docker-compose up
+```
+
 Bildquellen:
 The best boots you ever saw: https://www.theuncomfortable.com/wp-content/uploads/2017/04/20_boots-655x655.jpg (zuletzt besucht am 10.12.2022)
 
@@ -24,19 +31,5 @@ glasses: https://www.theuncomfortable.com/wp-content/uploads/2018/01/Uncomfortab
 
 
 
-
-was wir haben:
-cdn
-ci
-cypress
-good pm
-front end with nice design
-rabbit mq statt basic topic exhange
-authorization code flow
-
-
-was wir wollen:
-(redis)
-(cloud hosting)
 
 
