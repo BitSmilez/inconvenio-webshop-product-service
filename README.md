@@ -2,6 +2,7 @@
 
 This is the Product Microservice, responsible for managing product information and handling cart-related events. It provides a RESTful API to interact with the product catalog and integrates with a message queue for cart events.
 Features:
+
     Retrieve all products
     Retrieve a product by its ID
     Create a new product
@@ -41,6 +42,7 @@ To start the Product Microservice using Docker, run the following command:
 
 This will start the microservice and any required infrastructure, such as a message queue, in separate containers. The API will be accessible on http://localhost:8089.
 API Endpoints
+
     GET /products: Retrieve all products
     GET /product/{id}: Retrieve a product by its ID
     POST /product: Create a new product
@@ -49,7 +51,6 @@ API Endpoints
     GET /product/find?keyWord={keyWord}: Find products based on keywords
     GET /product/category/{category}: Filter products by category
     GET /products/sale: Filter products on sale
-
     POST /cart/add-to-cart: Publish an add-to-cart event
     POST /cart/remove-from-cart: Publish a remove-from-cart event
     POST /cart/update-cart: Publish an update-cart event
