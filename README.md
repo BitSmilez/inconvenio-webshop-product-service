@@ -20,25 +20,23 @@ Requirements
 
 Installation
 
-    Clone the repository:
+    git clone https://github.com/BitSmilez/inconvenio-webshop-product-service.git
 
-bash
+Navigate to the project directory:
 
-https://github.com/BitSmilez/inconvenio-webshop-product-service.git
 
-    Navigate to the project directory:
 
-bash
+    cd product-microservice
 
-cd product-microservice
 
-Usage
+
+## Usage
 
 To start the Product Microservice using Docker, run the following command:
 
-bash
 
-docker-compose up
+
+    docker-compose up
 
 This will start the microservice and any required infrastructure, such as a database, in separate containers. The API will be accessible on http://localhost:8085.
 API Endpoints
@@ -52,6 +50,7 @@ API Endpoints
     GET /product/category/{category}: Filter products by category
     GET /products/sale: Filter products on sale
 
+## Copyright
 In this project, we've incorporated a variety of fascinating and thought-provoking images, all of which have been sourced from the talented Katerina Kamprani. These images showcase a range of quirky and unconventional designs, bringing an element of intrigue and whimsy to our work. We'd like to extend our gratitude to Katerina Kamprani for her exceptional artistry . All images can can be found at the following links:
 
 The best boots you ever saw: https://www.theuncomfortable.com/wp-content/uploads/2017/04/20_boots-655x655.jpg 
