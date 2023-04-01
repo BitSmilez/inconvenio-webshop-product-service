@@ -1,14 +1,58 @@
-# inconvenio-webshop-product-service
-Spring Boot Product Microservice for the Inconvenio Webshop
+## Product Microservice
 
-Welcome! This is a product microservice for the inconvenio webshop!
+This is the Product Microservice, which is responsible for managing products. It provides a RESTful API to perform CRUD operations on products, search for products based on keywords, and filter products by category or sale status.
+Features
 
-To start the server enter:
-```
+    Retrieve all products
+    Retrieve a product by its ID
+    Create a new product
+    Update an existing product
+    Delete a product by its ID
+    Find products based on keywords
+    Filter products by category
+    Filter products on sale
+
+Requirements
+
+    Java 11+
+    Spring Boot
+    Docker
+
+Installation
+
+    Clone the repository:
+
+bash
+
+https://github.com/BitSmilez/inconvenio-webshop-product-service.git
+
+    Navigate to the project directory:
+
+bash
+
+cd product-microservice
+
+Usage
+
+To start the Product Microservice using Docker, run the following command:
+
+bash
+
 docker-compose up
-```
 
-The used pictures are from  Katerina Kamprani.
+This will start the microservice and any required infrastructure, such as a database, in separate containers. The API will be accessible on http://localhost:8085.
+API Endpoints
+
+    GET /products: Retrieve all products
+    GET /product/{id}: Retrieve a product by its ID
+    POST /product: Create a new product
+    PUT /product/{id}: Update an existing product
+    DELETE /product/{id}: Delete a product by its ID
+    GET /product/find?keyWord={keyWord}: Find products based on keywords
+    GET /product/category/{category}: Filter products by category
+    GET /products/sale: Filter products on sale
+
+In this project, we've incorporated a variety of fascinating and thought-provoking images, all of which have been sourced from the talented Katerina Kamprani. These images showcase a range of quirky and unconventional designs, bringing an element of intrigue and whimsy to our work. We'd like to extend our gratitude to Katerina Kamprani for her exceptional artistry . All images can can be found at the following links:
 
 The best boots you ever saw: https://www.theuncomfortable.com/wp-content/uploads/2017/04/20_boots-655x655.jpg 
 
