@@ -1,7 +1,7 @@
 # Product Microservice
 
 This is the Product Microservice, responsible for managing product information and handling cart-related events. It provides a RESTful API to interact with the product catalog and integrates with a message queue for cart events.
-Features
+Features:
 
     Manage product catalog
     Publish events for add-to-cart, remove-from-cart, and update-cart
