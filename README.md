@@ -27,7 +27,7 @@ Clone the repository:
 
 
 
-    git clone https://github.com/your-username/product-microservice.git
+    git clone https://github.com/BitSmilez/inconvenio-webshop-product-service.git
 
 
 
